@@ -21,7 +21,7 @@
       if (match) {
         let projectId = match[match.length - 1];
         // プレイヤーのコントロールが確実に表示されるようにURLを設定
-        frame.src = `https://turbowarp.org/${projectId}/embed`;
+        frame.src = `https://turbowarp.org/${projectId}/embed?autoplay&controls`;
       } else {
         alert('有効なプロジェクトIDまたはURLを入力してください。');
       }
