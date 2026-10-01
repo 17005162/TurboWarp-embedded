@@ -4,8 +4,7 @@
     <button onclick="loadTurboWarp()" style="padding: 8px 15px; font-size: 14px; cursor: pointer; background-color: #4CAF50; color: white; border: none; border-radius: 4px;">読み込む</button>
   </div>
   
-  <!-- 高さを少し広げ、プレイヤーがゆったり収まるように調整 -->
-  <div style="position: relative; width: 100%; height: 500px; border: 1px solid #ccc; background: #f9f9f9;">
+  <div style="position: relative; width: 100%; height: 450px; border: 1px solid #ccc; background: #f9f9f9;">
     <iframe id="targetFrame" src="" width="100%" height="100%" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen style="position: absolute; top: 0; left: 0;"></iframe>
   </div>
 </div>
@@ -16,12 +15,13 @@
     const frame = document.getElementById('targetFrame');
     
     if (inputVal) {
+      // 入力された文字列から数字の塊をすべて探す
       let match = inputVal.match(/\d+/g);
       
       if (match) {
+        // 見つかった数字の中から最後のもの（通常はプロジェクトID）を使用する
         let projectId = match[match.length - 1];
-        // プレイヤーのコントロールが確実に表示されるようにURLを設定
-        frame.src = `https://turbowarp.org/${projectId}/embed?autoplay&controls`;
+        frame.src = `https://turbowarp.org/${projectId}/embed`;
       } else {
         alert('有効なプロジェクトIDまたはURLを入力してください。');
       }
@@ -30,6 +30,7 @@
     }
   }
 
+  // 入力欄でEnterキーが押されたときに読み込みを実行する
   document.getElementById('projectIdInput').addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
       loadTurboWarp();
